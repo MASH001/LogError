@@ -1,5 +1,5 @@
-﻿using CustomerRejCompInvest.Models;
-using CustomerRejCompInvest.Models.DBContext;
+
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,20 +11,14 @@ public class LogError : ILogException
 {
     private string UserName { get; set; }
     private string ApplicationName { get; set; }
-    //private UserAccessDbContext _dbContext;
-    private quality_controlEntities2 _dbContext;
-
-    //public LogError(UserAccessDbContext dbContext)
-    //{
-    //    _dbContext = dbContext;
-    //}
-  
-    public LogError(quality_controlEntities2 dbContext)
+    
+    private UserAccessDbContext _dbContext;
+    
+    public LogError(UserAccessDbContext dbContext)
     {
         _dbContext = dbContext;
     }
-    
-
+  
     public void LogErrorFileSystem(System.Exception ex, string action)
     {
         using (StreamWriter writer = new StreamWriter(@"\\10.10.7.217\\NASShare\WEBLogs\" + ApplicationName + ".txt", true))
